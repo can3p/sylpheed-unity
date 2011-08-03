@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import os, subprocess, sys
+from gi.repository import Unity, Gio, GObject, Dbusmenu
+
+sylpheedBin = "/usr/bin/sylpheed.bin"
+
+def getMessagesCount():
+    return int( os.popen( sylpheedBin + " --status | awk '{print $1}'").read() )
+
+def sylpheedRunning():
+    return len( os.popen("pgrep sylpheed").read() ) > 0
+
+def checkMessages():
+    if not sylpheed.poll() is None:
+        exit(0)
+
+    number = getMessagesCount()
+
+    if number > 0:
+        launcher.set_property("count", number)
+        launcher.set_property("count_visible", True)
+        launcher.set_property("urgent", True)
+    else:
+        launcher.set_property("count_visible", False)
+        launcher.set_property("urgent", False)
+
+    return True
+
+sylpheedStarted = sylpheedRunning()
+sylpheed = subprocess.Popen([ sylpheedBin ] + sys.argv[1:])
+if( sylpheedStarted ):
+    exit(0)
+
+loop = GObject.MainLoop()
+
+# Pretend to be evolution for the sake of the example 
+launcher = Unity.LauncherEntry.get_for_desktop_id ("sylpheed.desktop")
+
+GObject.timeout_add_seconds(1, checkMessages )
+checkMessages()
+
+loop.run()
+

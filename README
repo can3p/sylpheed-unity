@@ -1,0 +1,15 @@
+sylpheed-unity is a fast hack to integrate sylpheed mail client in the unity
+environment.
+
+In sylpheed.desktop we add to items to the sylpheed menu - compose message
+and receive all messages.
+
+sylpheed is a script that launches sylpheed binary and starts to poll for
+unread messages. If there are some it shows corresponding badge and sets
+icon status to urgent.
+
+Install instructions:
+cp sylpheed.desktop /usr/share/applications
+mv /usr/bin/sylpheed /usr/bin/sylpheed.bin
+cp sylpheed /usr/bin/sylpheed
+

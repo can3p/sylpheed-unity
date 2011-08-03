@@ -1,0 +1,32 @@
+[Desktop Entry]
+Name=Sylpheed
+Name[ja]=Sylpheed
+Comment=E-Mail client
+Comment[de]=E-Mail Programm
+Comment[fr]=Client de messagerie électronique
+Comment[hu]=Grafikus email kliens
+Comment[ja]=電子メールクライアント
+Comment[pl]=Klient poczty elektronicznej
+Comment[tr]=E-Posta İstemcisi
+Comment[ru]=E-Mail клиент
+Comment[uk]=E-Mail клієнт
+Comment[es]=Cliente de correo electrónico
+Exec=sylpheed %u
+Icon=sylpheed
+Terminal=false
+Type=Application
+Categories=GTK;Network;Email;News;
+MimeType=x-scheme-handler/mailto;
+X-Ayatana-Desktop-Shortcuts=NewMessage;ReceiveAll
+
+[NewMessage Shortcut Group]
+Name=Compose New Message
+Name[ru]=Новое сообщение
+Exec=/usr/bin/sylpheed --compose
+TargetEnvironment=Unity
+
+[ReceiveAll Shortcut Group]
+Name=Receive new messages
+Name[ru]=Получить почту
+Exec=/usr/bin/sylpheed --receive-all
+TargetEnvironment=Unity
